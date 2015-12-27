@@ -33,54 +33,48 @@ enum Velocidades:Int {
     
 }
 
-var entrada = Velocidades (velocidadInicial: 120)
-
 class Auto{
     
     var velocidad: Velocidades
     
     
-    init ( var velocidad : Velocidades){
-        velocidad = Velocidades(velocidadInicial: 0)
-        }
+    init (){
+        velocidad = Velocidades(velocidadInicial:0)
+    }
     
-    func cambioDeVelocidad (  var velocidad : Int) -> (actual : Int, velocidadEnCadena : String ){
+
+    func cambioDeVelocidad () -> (actual : Int, velocidadEnCadena : String ){
         
-        var actual : Int
         var velocidadEnCadena : String = ""
-        
-        if (velocidad == 0)
-            {
-                velocidad = 20
-                actual = velocidad
-                velocidadEnCadena = "Velocidad baja"
-                }
-        
-        if (velocidad == 20){
-            velocidad = 50
-            actual = velocidad
+               switch velocidad {
+        case .Apagado:
+            velocidad = .VelocidadBaja
+            velocidadEnCadena = "Velocidad Baja"
+        case .VelocidadBaja:
+            velocidad = .VelocidadMedia
             velocidadEnCadena = "Velocidad Media"
-        }
-        
-        if (velocidad == 50){
-            velocidad = 120
-            actual = velocidad
+        case .VelocidadMedia:
+            velocidad = .VelocidadAlta
             velocidadEnCadena = "Velocidad Alta"
+        case .VelocidadAlta:
+            velocidad = .Apagado
+            velocidadEnCadena = "Apagado"
         }
         
-        if (velocidad == 120){
-            velocidad = 0
-            actual = velocidad
-            velocidadEnCadena = "Apagado"
-                  }
-        
-    return ( actual, velocidadEnCadena)
+    return ( velocidad.rawValue , velocidadEnCadena)
     }
     
 }
-               
-var auto = Auto.cambioDeVelocidad(20)
 
+var auto = Auto()
+
+ Velocidades(velocidadInicial: 20)
+
+
+for cambio in 1...20
+{
+    print ("\(cambio) \(auto.cambioDeVelocidad())")
+}
 
 
 
