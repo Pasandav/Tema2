@@ -68,7 +68,7 @@ class Auto{
 
 var auto = Auto()
 
- Velocidades(velocidadInicial: 20)
+
 
 
 for cambio in 1...20
